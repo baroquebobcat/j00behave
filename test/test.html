@@ -1,0 +1,36 @@
+<html>
+<script src='../vendor/prototype_object.js'></script>
+<script src='../lib/j00behave.js'></script>
+<script>
+Spec({
+'String manipulation':{
+    'concatenation': function(){
+      var x = 'asdf';
+      var y = 'aoeu';
+      (x+y).should("==",'asdfaoeu')
+    }
+  },
+  'String indexes':{
+    '#indexOf valid':function(){
+      'asdf'.indexOf('d').should("==",2)
+    },
+    '#indexOf invalig':function(){
+       'asdf'.indexOf('e').should("==",2)
+    }
+  },
+  'testing setup':{
+//     before:{each:function(){}},
+//beforeEach:function(){},
+//'before:each':function(){}
+//'before:all':function(){}
+  }
+})
+/*
+
+    with(Spec){
+      
+    }
+
+*/
+</script>
+</html>
