@@ -10,12 +10,19 @@ Spec({
       (x+y).should("==",'asdfaoeu')
     }
   },
-  'String indexes':{
-    '#indexOf valid':function(){
-      'asdf'.indexOf('d').should("==",2)
+  'String #indexOf':{
+    'passing':{
+      'it should say that d in asdf index = 2':function(){
+        'asdf'.indexOf('d').should("==",2)
+      }
     },
-    '#indexOf invalig':function(){
-       'asdf'.indexOf('e').should("==",2)
+    'failing':{
+      'it should mark e in asdf index = 2':function(){
+         'asdf'.indexOf('e').should("==",2)
+      },
+      'd in asdf index > 3':function(){
+          'asdf'.indexOf('d').should(">",3)
+      }
     }
   },
   'testing setup':{
@@ -23,14 +30,11 @@ Spec({
 //beforeEach:function(){},
 //'before:each':function(){}
 //'before:all':function(){}
+    before: function(){
+      this.awesome
+    }
   }
 })
-/*
 
-    with(Spec){
-      
-    }
-
-*/
 </script>
 </html>
