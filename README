@@ -1,0 +1,65 @@
+rspec looks like
+"blah".length.should == 4
+I want js specs to look almost the same, in terms of compactness.
+this is my goal for matching
+
+"blah".length.should("==",4)
+
+The main js BDD frameworks out there right now are more verbose than I like, so I started working on my own.
+I am borrowing ideas from jsspec and Screw.Unit in places. But, I want to write the thing from roughly the ground up.
+
+js---
+***>> "blah".length.should("==",4) <<***
+"blah".length.should(); equal(4)
+"blah".length.should(equal,4)
+"blah".length.should({equal:4})
+"blah".length.should({'==':4})
+m("blah".length).should("==",4)
+
+
+
+
+
+
+One problem I ran into immediately was whether to break for in loops or not, by adding functions to Object.prototype.
+It looks like most choose not to. If you don't, then you are limited to building matchers off of things like this
+
+  wrapper("thing to test".length).should("matcher","expected value")
+
+because you can't use the object directly.
+  
+Screw.Unit
+  expect(thinggummy()).to(equal, expected_value);
+jsspec
+  value_of(1 + 2).should_be(3);
+
+After using rspec for a while, I found these abit frustrating--too much line noise. I use Prototype on my projects which, 
+since it adds things to Objects that might not be expected when using for in loops, I say to heck with them.
+But, you can turn that off if you like.
+
+Or, atleast that is the plan.
+
+Spec.use_wrapper()
+
+then instead of
+
+  (1+1).should("==",2)
+
+you should use
+
+  j(1+1).should("==",2)
+
+(if j() doesn't work for you for some reason, you can change the name by passing a string to use_wrapper)
+
+
+'describe' blocks are just javascript objects, and they stack.
+If you want, you can define something like this
+Spec('thing to test',{...})
+or just Spec({...})
+
+Spec({
+  'test wrapped objects':{}
+
+})
+
+If I want it to act like rspec, the matchers and expectations need to be fatter.
